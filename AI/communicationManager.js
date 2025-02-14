@@ -64,7 +64,7 @@ export async function getOllamaChatResponse(systemContent, userContent) {
 
     return parsed
 }
-export async function getAIQuiz(userPrompt) {
+export async function getAIQuiz(userPrompt, systemPrompt) {
 
     const setProgrammingLanguage = 'JavaScript'
     
@@ -81,7 +81,7 @@ export async function getAIQuiz(userPrompt) {
             'messages': [
                 {
                     'role': 'system', //System prompts tell the ai how to act and orders to follow
-                    'content': systemContent
+                    'content': systemPrompt
                 },
                 {
                     'role': 'user', //User prompts are the questions or problems asked by the user
@@ -110,7 +110,8 @@ export async function getAIQuiz(userPrompt) {
                                             "type": "array", 
                                             "items": { "type": "string" }
                                         },
-                                        "required": { "type": "boolean" }
+                                        "required": { "type": "boolean" },
+                                        "correct_option": {"type": "integer"}
                                     },
                                     "required": ["question_id", "question_text", "question_type", "options", "required"]
                                 }
