@@ -100,20 +100,21 @@ export async function getAIQuiz(userPrompt, systemPrompt) {
                         "properties": {
                             "quiz": {
                                 "type": "array",
+                                "minItems": 5,
+                                "maxItems": 5,
                                 "items": {
                                     "type": "object",
                                     "properties": {
                                         "question_id": { "type": "integer" },
                                         "question_text": { "type": "string" },
-                                        "question_type": { "type": "string" },
-                                        "options": { 
+                                        "question_type": {"type": "string", "enum": ['MCQ']},                                     "options": { 
                                             "type": "array", 
                                             "items": { "type": "string" }
                                         },
+                                        "correct_option": {"type": "integer"},
                                         "required": { "type": "boolean" },
-                                        "correct_option": {"type": "integer"}
                                     },
-                                    "required": ["question_id", "question_text", "question_type", "options", "required"]
+                                    "required": ["question_id", "question_text", "question_type", "options","correct_option", "required"]
                                 }
                             }
                         },
